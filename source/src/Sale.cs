@@ -19,6 +19,8 @@
             _amount = amount;
         }
 
+        public decimal Amount => _amount;
+
         public decimal GetTotal()
         {
             return _pricingStrategy.GetTotal(this);
