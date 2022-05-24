@@ -28,7 +28,7 @@
             employeeManager.PaySalaries();
 
             // Assert Option b)
-            consoleMock.Verify(x => x.WriteLine(It.IsAny<decimal>()), Times.Once);
+            consoleMock.Verify(x => x.WriteLine(1_160_000m), Times.Once);
         }
 
         [Fact]
