@@ -1,4 +1,4 @@
-﻿namespace Zbw.DesignPatterns
+﻿namespace Zbw.DesignPatterns.Strategy
 {
     using System;
     using System.Collections.Generic;

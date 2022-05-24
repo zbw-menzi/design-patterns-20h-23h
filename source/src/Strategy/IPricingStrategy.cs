@@ -1,4 +1,4 @@
-﻿namespace Zbw.DesignPatterns
+﻿namespace Zbw.DesignPatterns.Strategy
 {
     public interface IPricingStrategy
     {

@@ -1,4 +1,4 @@
-﻿namespace ZbW.DesignPatterns.Strategy
+﻿namespace Zbw.DesignPatterns.Strategy
 {
     using System;
 

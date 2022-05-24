@@ -1,7 +1,5 @@
-﻿namespace ZbW.DesignPatterns.Strategy
+﻿namespace Zbw.DesignPatterns.Strategy
 {
-    using Zbw.DesignPatterns;
-
     public class AbsoluteDiscountOverThresholdStrategy : IPricingStrategy
     {
         private readonly decimal _threshold;

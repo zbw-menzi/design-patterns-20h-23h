@@ -1,7 +1,5 @@
-﻿namespace ZbW.DesignPatterns.Strategy
+﻿namespace Zbw.DesignPatterns.Strategy
 {
-    using Zbw.DesignPatterns;
-
     public class DoubleDiscountAfterLunchStrategy : IPricingStrategy
     {
         private readonly ITimeSource _timeSource;
@@ -17,10 +15,10 @@
         {
             if (_timeSource.Now.Hour < 12)
             {
-                return sale.Amount - (sale.Amount / 100m * _percentageDiscount);
+                return sale.Amount - sale.Amount / 100m * _percentageDiscount;
             }
 
-            return sale.Amount - (sale.Amount / 100m * _percentageDiscount * 2);
+            return sale.Amount - sale.Amount / 100m * _percentageDiscount * 2;
         }
     }
 }
