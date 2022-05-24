@@ -1,6 +1,8 @@
-﻿namespace design_patterns.tests.Adapter
+﻿namespace Zbw.DesignPatterns.Tests.Adapter
 {
     using FluentAssertions;
+
+    using Moq;
 
     using Xunit;
 
@@ -12,33 +14,42 @@
         public void GetSalaryObjectAdapter_WhenEmployeeAndPresident_ThenAllSalariesListed()
         {
             // Arrange
-            var employeeManager = new EmployeeManager();
+            var consoleMock = new Mock<IConsole>();
+            var employeeManager = new EmployeeManager(consoleMock.Object);
+            consoleMock.Setup(x => x.WriteLine(It.IsAny<decimal>()))
+                       // Assert Option a)
+                       .Callback<decimal>(x => x.Should().Be(1_160_000m));
 
             employeeManager.Add(new Employee(100_000m));
             employeeManager.Add(new Employee(060_000m));
             employeeManager.Add(new EmployeeObjectAdapter(new PresidentOfTheBoard(1_000_000m)));
 
             // Act
-            var result = employeeManager.PaySalaries();
+            employeeManager.PaySalaries();
 
-            // Assert
-            result.Should().Be(1_160_000m);
+            // Assert Option b)
+            consoleMock.Verify(x => x.WriteLine(It.IsAny<decimal>()), Times.Once);
         }
 
         [Fact]
         public void GetSalaryClassAdapter_WhenEmployeeAndPresident_ThenAllSalariesListed()
         {
             // Arrange
-            var employeeManager = new EmployeeManager();
+            var result = 0m;
+            var consoleMock = new Mock<IConsole>();
+            var employeeManager = new EmployeeManager(consoleMock.Object);
+            consoleMock.Setup(x => x.WriteLine(It.IsAny<decimal>()))
+                       // Assert Option c)
+                       .Callback<decimal>(x => result = x);
 
             employeeManager.Add(new Employee(100_000m));
             employeeManager.Add(new Employee(060_000m));
             employeeManager.Add(new EmployeeClassAdapter(1_000_000));
 
             // Act
-            var result = employeeManager.PaySalaries();
+            employeeManager.PaySalaries();
 
-            // Assert
+            // Assert Option c)
             result.Should().Be(1_160_000m);
         }
     }

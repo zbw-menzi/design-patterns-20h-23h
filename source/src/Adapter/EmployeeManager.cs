@@ -9,10 +9,12 @@
     public class EmployeeManager
     {
         private readonly List<IEmployee> _employees;
+        private readonly IConsole _console;
 
-        public EmployeeManager()
+        public EmployeeManager(IConsole console)
         {
             _employees = new List<IEmployee>();
+            _console = console;
         }
 
         public void Add(IEmployee employee)
@@ -25,14 +27,11 @@
             _employees.Remove(employee);
         }
 
-        public decimal PaySalaries()
+        public void PaySalaries()
         {
             var total = _employees.Sum(e => e.GetSalary());
 
-            //// Console should be an interface or use ILogger
-            Console.WriteLine(total);
-
-            return total;
+            _console.WriteLine(total);
         }
     }
 }
