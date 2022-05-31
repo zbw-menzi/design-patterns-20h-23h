@@ -8,5 +8,7 @@
     public interface IConsole
     {
         void WriteLine(decimal value);
+
+        void WriteLine(string value);
     }
 }
